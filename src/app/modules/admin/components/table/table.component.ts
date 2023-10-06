@@ -70,4 +70,25 @@ export class TableComponent {
 
     })
   }
+  //VINCULA EL BOTON "GUARDA CAMBIOS"
+  editarProducto(){
+    let datos: Producto= {
+      idProducto: this.productoSeleccionado.idProducto,
+      nombre: this.producto.value.nombre!,
+      imagen: this.producto.value.imagen!,
+      alt: this.producto.value.alt!,
+      descripcion: this.producto.value.descripcion!,
+      precio: this.producto.value.precio!,
+      categoria:this.producto.value.categoria!
+    }
+
+    this.servicioCrud.modificarProducto(this.productoSeleccionado.idProducto, datos)
+    .then(producto =>{
+      alert("El producto fue modificado con exito.");
+    })
+    .catch(error =>{
+      alert("No se puedo modificar el producto /n"+error);
+    })
+  }
+
 }
