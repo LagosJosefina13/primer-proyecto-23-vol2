@@ -25,9 +25,9 @@ export class TableComponent {
     descripcion: new FormControl('',Validators.required),
     precio: new FormControl(0,Validators.required),
     categoria: new FormControl('',Validators.required),
-    
+
   })
-  constructor(public servicioCrud: CrudService){ }// patentamos servicio de forma local 
+  constructor(public servicioCrud: CrudService){ }// patentamos servicio de forma local
 
   ngOnInit(): void{
     this.servicioCrud.obtenerProducto().subscribe(producto =>{
@@ -52,8 +52,22 @@ export class TableComponent {
       alert("ha agregado un nuevo producto con 'exito :)");
     })
     .catch(error =>{
-      alert("hubi un error al cargar nuevi producto :( \n" + error);
+      alert("hubi un error al cargar nuevo producto :( \n" + error);
     })
   }
+  }
+  //Editar Producto -> Vincula al modal de editar
+  mostrarEditar(productoSeleccionado:Producto){
+    this.productoSeleccionado = productoSeleccionado;
+
+    this.producto.setValue({
+      nombre: productoSeleccionado.nombre,
+      imagen: productoSeleccionado.imagen,
+      alt: productoSeleccionado.alt,
+      descripcion: productoSeleccionado.descripcion,
+      precio: productoSeleccionado.precio,
+      categoria: productoSeleccionado.categoria
+
+    })
   }
 }
