@@ -25,7 +25,7 @@ export class CrudService {
         const resultado = await  this.productosColletion.doc(idProducto).set(producto)
 
         resolve(resultado);
-      }catch (error){ //CATCH -> captura posibles errorres 
+      }catch (error){ //CATCH -> captura posibles errorres
         reject(error) // muestra el error
       }
     })
@@ -33,9 +33,12 @@ export class CrudService {
    obtenerProducto() {
     //SNAPSHOTCHANGES -> captura del estado de los datos
     //PIPE -> tuberia por donde pasan los datos (retorna el nuevo arreglo)
-    //MAP -> "mapea" o recorre la nueva informacion y la envia 
-    // A -> resguarda la  nueva informacion y la envia 
+    //MAP -> "mapea" o recorre la nueva informacion y la envia
+    // A -> resguarda la  nueva informacion y la envia
      return this.productosColletion.snapshotChanges().pipe(map(action => action.map(a => a.payload.doc.data())))
+   }
+   modificarProducto(idProducto:string,nuevaData:Producto){
+    return this.database.collection('producto').doc(idProducto).update(nuevaData);
    }
 }
 
