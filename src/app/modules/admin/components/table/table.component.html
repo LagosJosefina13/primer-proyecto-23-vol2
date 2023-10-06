@@ -1,0 +1,103 @@
+<table class="table">
+  <thead>
+    <tr>
+      <!--LETRA OSCURA-->
+      <th scope="col">#</th>
+      <th scope="col">Imagen</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Precio</th>
+      <th>Categoria</th>
+      <th scope="col">Acciones</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFo ="let col of coleccionProductos">
+      <th scope="row">1</th>
+      <td>
+        <img src="{{col.imagen}}" alt="{{col.alt}}">
+      </td>
+
+      <td>{{col.nombre}}</td>
+      <td>{{col.descripcion}}</td>
+      <td>{{col.precio}}</td>
+      <td>{{col.categoria}}</td> <!-- HOY-->
+
+      <!-- Acciones-->
+      <td>
+        <button id="btn-acs" title="Editar" type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarProducto"><mat-icon> edit</mat-icon></button>
+        
+        <button id="btn-acs"  title="Eliminar" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarProducto"><mat-icon> delate</mat-icon></button>
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+
+<!-- BOTON PARA AGRERGAR PRODUCTOS-->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarProducto">
+  Agregar un nuevo producto
+</button>
+
+<!-- Modal para agregar producto -->
+<div class="modal fade" id="agregarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ingrese un nuevo producto:</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div [formGroup]="producto" class="modal-body">
+
+        <div class="mb-3">
+          <label class="form-label"> Ingrese el nombre del producto:</label>
+          <input class="form-control" type="text" fromControlName="nombre" placeholder="Ej: Producto color rosa">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label"> Ingrese una imagen:</label>
+          <input class="form-control" type="text" fromControlName="imagen"
+            placeholder="Ej: Ingrese el vinculo de la imagen">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label"> Ingrese un texto alternativo de la imagen :</label>
+          <input class="form-control" type="text" fromControlName="alt" placeholder="Ej: Ingrese  un txto alternativo">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label"> Ingrese una descrpcion:</label>
+          <input class="form-control" type="text" fromControlName="descripcion"
+            placeholder="Ej: Ingrese una descrpcion">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label"> Ingrese el precio:</label>
+          <input class="form-control" type="number" fromControlName="precio" placeholder="Ej: Ingrese un precio">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label"> Ingrese una categoria:</label>
+
+          <select class=" form-control" formControlName="categoria" class="form-select">
+          <option selected >Elija una opcion</option>
+          <option value="collares">Collares</option>
+          <option value="juguetes">Juguetes</option>
+          <option value="indumentaria">Indumentaria</option> 
+        </select>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outiline-success" data-bs-dismiss="modal" (click)="agregarProducto()">Guardar </button>
+        <button type="button" class="btn btn-outiline-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

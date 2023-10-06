@@ -1,0 +1,35 @@
+<mat-toolbar>
+  <button mat-icon-button routerLink="/inicio" class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>home</mat-icon>
+  </button>
+  <span>Pets</span>
+
+  <span class="example-spacer"></span>
+
+  <!--ENRUTAMOS PAGINAS-->
+  <button mat-button routerLink="/inicio">Inicio</button>
+  <button mat-button routerLink="/nosotros">Nosotros</button>
+
+  <!--MENU desplegable para Productos-->
+  <button mat-button [matMenuTriggerFor]="menu"> Productos </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/productos">Productos</button>
+    <button mat-menu-item routerLink="/collares ">Collares</button>
+    <button mat-menu-item routerLink="/juguetes ">Juguetess</button>
+    <button mat-menu-item routerLink="/indumentaria">indumentaria</button>
+  </mat-menu>
+  
+  <button mat-button routerLink="/admin">Administrador</button>
+
+<!--Menu deslagable para usuarios (registro y login)-->
+<!--va a contener los formularios de acceso-->
+  <button mat-button [matMenuTriggerFor]="user"> <mat-icon>person</mat-icon> </button>
+  <mat-menu #user="matMenu">
+    <button mat-menu-item routerLink="/login">Iniciar Sesión <mat-icon>person</mat-icon></button>
+    <button mat-menu-item routerLink="/register">Regista <mat-icon>person_add</mat-icon></button>
+  </mat-menu>
+  
+
+
+ 
+</mat-toolbar>
